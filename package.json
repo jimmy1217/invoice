@@ -4,7 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server"
+    "dev": "next",
+    "build": "next build",
+    "start": "node -r dotenv/config server.js dotenv_config_path=./.env",
+    "export": "next export"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "cookie-parser": "~1.4.4",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "next": "^10.0.7",
     "react": "^17.0.1",

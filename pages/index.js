@@ -1,3 +1,2 @@
-const IndexPage = () => <div>hello</div>
-
+const IndexPage = () => <div>invoice api</div>
 export default IndexPage

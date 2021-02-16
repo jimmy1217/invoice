@@ -1,5 +1,3 @@
-import { cornflowerblue } from 'color-name'
-
 const cheerio = require('cheerio')
 const Cors = require('cors')
 const cors = Cors({

@@ -4,7 +4,7 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const apiRouter = require('./api/apiRouter');
+const apiRouter = require('./express_api/apiRouter');
 const cookieParser = require('cookie-parser');
 
 app.prepare()
@@ -12,7 +12,7 @@ app.prepare()
         const server = express();
         server.use(cookieParser());
 
-        server.use('/api',apiRouter)
+        server.use('/invoice',apiRouter)
         server.get('*', (req, res) => {
             return handle(req, res)
         })

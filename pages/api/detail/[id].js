@@ -1,22 +1,15 @@
 const cheerio = require('cheerio')
-const Cors = require('cors')
-const cors = Cors({
-    method: ['GET']
-})
+import Cors from 'cors'
+import corsMiddleware from '../../../lib/corsMiddleware'
 
-function corsMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-        fn(req, res, (result) => {
-            if (result instanceof Error) {
-                return reject(result)
-            }
-            return resolve(result)
-        })
+const cors = corsMiddleware(
+    Cors({
+        methods: ['GET'],
     })
-}
+)
 
 export default async (req, res) => {
-    await corsMiddleware(req, res, cors)
+    await cors(req, res)
     if (req.method === 'GET') {
         try {
             const { id } = req.query

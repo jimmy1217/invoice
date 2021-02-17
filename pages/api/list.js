@@ -1,24 +1,17 @@
 const cheerio = require('cheerio')
-const Cors = require('cors')
-const cors = Cors({
-    method: ['GET']
-})
+import Cors from 'cors'
+import corsMiddleware from '../../lib/corsMiddleware'
 
-function corsMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-        fn(req, res, (result) => {
-            if (result instanceof Error) {
-                return reject(result)
-            }
-            return resolve(result)
-        })
+const cors = corsMiddleware(
+    Cors({
+        methods: ['GET'],
     })
-}
+)
 
 const listUrl = 'https://www.etax.nat.gov.tw/etw-main/web/ETW183W1/'
 
 export default async (req, res) => {
-    await corsMiddleware(req, res, cors)
+    await cors(req, res)
     if (req.method === 'GET') {
         try {
             const response = await fetch(listUrl)

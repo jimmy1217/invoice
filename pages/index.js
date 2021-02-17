@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
+const cheerio = require('cheerio')
 
 const fetchData = async () => {
-    const res = await fetch('https://invoice-nine.vercel.app/list')
-    console.log(res.data)
+    const res = await fetch('https://invoice-nine.vercel.app/list', { method: 'get' })
+    const html = await res.text();
+    const $ = cheerio.load(html)
+    const data = JSON.parse($('#list_source').text())
+    console.log(data)
 }
 
 const IndexPage = () => {

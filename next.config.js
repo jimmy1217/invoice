@@ -12,5 +12,11 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+        console.log(defaultPathMap)
+        return {
+            '/mytest': { page: '/eee', query: { title: 'hellllooo' } },
+        }
+    },
 };

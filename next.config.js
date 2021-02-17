@@ -2,8 +2,7 @@ module.exports = {
     async headers() {
         return [
             {
-                // matching all API routes
-                source: "/list",
+                source: "/all",
                 headers: [
                     { key: "Access-Control-Allow-Credentials", value: "true" },
                     { key: "Access-Control-Allow-Origin", value: "*" },

@@ -1,3 +1,6 @@
+import { getAllData } from './../src/actions'
+
+
 const List = (props) => {
     return (
         <div>
@@ -9,22 +12,7 @@ const List = (props) => {
 }
 
 export async function getStaticProps(context) {
-    const invoiceListRes = await fetch('https://invoice-nine.vercel.app/api/list')
-    const invoiceList = await invoiceListRes.json()
-    const fetchUnit = async (detailUrl) => {
-        const res = await fetch(`https://invoice-nine.vercel.app/api/detail/${detailUrl}`);
-        return await res.json();
-    };
-    const allPromise = invoiceList.data.map(item => {
-        return fetchUnit(item.dataLink)
-    })
-
-    const allRes = await Promise.all(allPromise)
-    const allDetail = invoiceList.data.reduce((pre, item, i) => {
-        pre[item.dataLink] = allRes[i]
-        return pre
-    }, {})
-
+    const { invoiceList, allDetail } = await getAllData()
     return {
         props: {
             invoiceList: invoiceList,

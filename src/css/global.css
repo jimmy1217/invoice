@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+html, body, #__next {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
+    segoe ui, arial, sans-serif;
+    background: #eee;
+}
+
+#__next {
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}

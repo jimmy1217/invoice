@@ -55,7 +55,7 @@
     content: '';
     display: block;
     background-color: #fff;
-    width: calc(100vw - 110px);
+    width: calc(50vw - 55px);
     height: 1px;
     z-index: 1;
     right:100%;
@@ -66,7 +66,7 @@
     content: '';
     display: block;
     background-color: #fff;
-    width: calc(100vw - 110px);
+    width: calc(50vw - 55px);
     height: 1px;
     z-index: 1;
     left:100%;

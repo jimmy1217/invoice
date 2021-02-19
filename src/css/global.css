@@ -18,3 +18,7 @@ html, body, #__next {
 .alice-carousel__wrapper {
     cursor: url('/cursor.png') 39 39, auto;
 }
+
+.alice-carousel__stage {
+    will-change: transform, transition;
+}

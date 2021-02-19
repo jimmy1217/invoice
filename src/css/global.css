@@ -13,3 +13,8 @@ html, body, #__next {
 * {
     box-sizing: border-box;
 }
+
+
+.alice-carousel__wrapper {
+    cursor: url('/cursor.png') 39 39, auto;
+}

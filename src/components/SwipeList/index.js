@@ -3,22 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import Style from './SwipeList.module.css'
 
 let preIndex = 0;
-let alice = {}
-
-const DetailItem = ({ className, code }) => {
-    return (
-        <p className={className} >&zwj;{code}</p>
-    )
-}
-
-function DetailEqual(prevProps, nextProps) {
-    return !(prevProps.className !== nextProps.className)
-}
-
-const DetailItemComponent = React.memo(DetailItem, DetailEqual)
-
-
-const ListItem = ({ item, detail, years, index, activeIndex, animate_name }) => {
+const ListItem = ({ item, detail, years, index, activeIndex }) => {
     return (
         <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
             <div className={Style.monthHeader}>
@@ -35,7 +20,7 @@ const ListItem = ({ item, detail, years, index, activeIndex, animate_name }) => 
                 <div className={Style.detailContent}>
                     {detail.data.map((detailItem, k) => {
                         return (
-                            <DetailItemComponent key={`${item.dataLink}_${k}`} dataLink={item.dataLink} className={`animate__animated animate__faster animate__delay-${k} ${index === activeIndex ? animate_name : 'd-none'}`} code={detailItem.code} />
+                            <p key={`${item.dataLink}_${k}`} >&zwj;{detailItem.code}</p>
                         )
                     })}
                 </div>
@@ -45,22 +30,19 @@ const ListItem = ({ item, detail, years, index, activeIndex, animate_name }) => 
 }
 
 function ListEqual(prevProps, nextProps) {
-    return !(nextProps.activeIndex === nextProps.index || prevProps.activeIndex === nextProps.index)
+    return !(nextProps.activeIndex === nextProps.index)
 }
 
 const ListItemComponent = React.memo(ListItem, ListEqual)
 
-
-
 const SwipeList = (props) => {
     const { invoiceList, allDetail } = props.data;
     const [activeIndex, setActiveIndex] = useState(0);
-    const animate_name = activeIndex < preIndex ? 'animate__fadeInLeft' : 'animate__fadeInRight';
     preIndex = activeIndex
     const ListView = invoiceList.data.map((item, i) => {
         const detail = allDetail[item.dataLink];
         const years = Number(item.year) + 1911;
-        return <ListItemComponent item={item} detail={detail} years={years} index={i} activeIndex={activeIndex} animate_name={animate_name} />
+        return <ListItemComponent item={item} detail={detail} years={years} index={i} activeIndex={activeIndex} />
     })
 
     const onSlideChanged = ({ item }) => {

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jimmy1217/invoice#readme",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "cheerio": "^1.0.0-rc.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

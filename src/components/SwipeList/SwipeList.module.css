@@ -87,3 +87,7 @@
     letter-spacing: 2px;
     color:#666;
 }
+
+.detailContent p {
+    will-change: animation;
+}

@@ -10,10 +10,19 @@ const SwipeList = (props) => {
         const years = Number(item.year) + 1911;
         return (
             <div keys={item.dataLink} className={Style.swipeMain}>
-                <div className={Style.swipeContent}>
-                    <h2 className={Style.rangeTitle}>
-                        {item.monthRange}  <small>{years}</small>
+                <div className={Style.monthHeader}>
+                    <div className={`${Style.roundTitle} ${Style.circleRound}`}>
+                        <div className={`${Style.rangeTitle} ${Style.circleRound}`}>
+                            {item.monthRange}
+                        </div>
+                    </div>
+                    <h2>
+                        {years}
                     </h2>
+
+                </div>
+                <div className={Style.swipeContent}>
+                   
                     <div className={Style.detailContent}>
                         {detail.data.map((detailItem, k) => {
                             return (

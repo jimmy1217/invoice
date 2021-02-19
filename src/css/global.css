@@ -3,7 +3,7 @@ html, body, #__next {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
     segoe ui, arial, sans-serif;
-    background: #eee;
+    background: #f2f7ff;
 }
 
 #__next {

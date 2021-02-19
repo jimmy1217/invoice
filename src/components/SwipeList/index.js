@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import Style from './SwipeList.module.css'
 
-let preIndex = 0;
 const ListItem = ({ item, detail, years, index, activeIndex }) => {
     return (
         <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
@@ -38,7 +37,6 @@ const ListItemComponent = React.memo(ListItem, ListEqual)
 const SwipeList = (props) => {
     const { invoiceList, allDetail } = props.data;
     const [activeIndex, setActiveIndex] = useState(0);
-    preIndex = activeIndex
     const ListView = invoiceList.data.map((item, i) => {
         const detail = allDetail[item.dataLink];
         const years = Number(item.year) + 1911;

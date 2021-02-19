@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import Style from './SwipeList.module.css'
 
+let preIndex = 0;
+
 const SwipeList = (props) => {
     const { invoiceList, allDetail } = props.data;
     const [activeIndex, setActiveIndex] = useState(0);
+    const animate_name = activeIndex < preIndex ? 'animate__fadeInLeft' : 'animate__fadeInRight';
+    preIndex = activeIndex
     const ListView = invoiceList.data.map((item, i) => {
         const detail = allDetail[item.dataLink];
         const years = Number(item.year) + 1911;
@@ -24,7 +28,7 @@ const SwipeList = (props) => {
                     <div className={Style.detailContent}>
                         {detail.data.map((detailItem, k) => {
                             return (
-                                <p key={`${item.dataLink}_${k}`} className={`animate__animated animate__faster animate__delay-${k} ${i === activeIndex ? 'animate__fadeInDown' : 'd-none'}`}>&zwj;{detailItem.code}</p>
+                                <p key={`${item.dataLink}_${k}`} className={`animate__animated animate__faster animate__delay-${k} ${i === activeIndex ? animate_name : 'd-none'}`}>&zwj;{detailItem.code}</p>
                             )
                         })}
                     </div>
@@ -33,12 +37,7 @@ const SwipeList = (props) => {
         )
     })
 
-    const slidePrev = () => setActiveIndex(activeIndex - 1);
-    const slideNext = () => setActiveIndex(activeIndex + 1);
-    const onSlideChanged = ({ item }) => {
-        console.log('now will change')
-        setActiveIndex(item)
-    };
+    const onSlideChanged = ({ item }) => { setActiveIndex(item) };
     return (
         <AliceCarousel
             mouseTracking

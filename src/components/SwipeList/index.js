@@ -15,12 +15,16 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged, activeIndex }) 
 
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible } = state;
-
+    const isVisible = overlayVisible === index;
     return useMemo(() => {
         return (
-            <div className={`${Style.roundTitle} ${Style.circleRound} ${overlayVisible ? Style.active : ''}`}
+            <div className={`${Style.roundTitle} ${Style.circleRound} ${isVisible ? Style.active : ''}`}
                 onClick={() => {
-                    dispatch({ type: 'overlay_open' })
+                    dispatch({
+                        type: 'overlay_open', payload: {
+                            overlayIndex: index
+                        }
+                    })
                 }}
             >
                 <div className={`${Style.rangeTitle} ${Style.circleRound}`}>
@@ -43,13 +47,14 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged, activeIndex }) 
                 </div>
             </div>
         )
-    }, [state.overlayVisible, activeIndex === index])
+    }, [isVisible, activeIndex === index])
 }
 
 
 const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlideChanged }) => {
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible } = state;
+    const isVisible = overlayVisible === index;
     return useMemo(() => {
         return (
             <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
@@ -68,7 +73,7 @@ const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlid
                         })}
                     </div>
                 </div>
-                {overlayVisible &&
+                {isVisible &&
                     <div className={Style.overlay}
                         onClick={() => {
                             dispatch({ type: 'overlay_close' })
@@ -76,7 +81,7 @@ const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlid
                     </div>}
             </div>
         )
-    }, [state.overlayVisible, activeIndex === index])
+    }, [isVisible, activeIndex === index])
 }
 
 const SwipeList = (props) => {

@@ -16,6 +16,7 @@ html, body, #__next {
 
 
 .alice-carousel__wrapper {
+    height: 100%;
     cursor: url('/cursor.png') 39 39, auto;
 }
 
@@ -25,4 +26,8 @@ html, body, #__next {
 
 .d-none {
     display: none;
+}
+
+.alice-carousel, .alice-carousel > div {
+    height: 100%;
 }

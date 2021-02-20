@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import Style from './SwipeList.module.css'
+import { MyContext } from '@/store/context-manager';
 
 const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
     const monthsData = invoiceList.data
@@ -11,31 +12,42 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
         }))
         .filter((item, i) => i >= index - 2 && i < index + 6)
         .splice(0, 5)
-    return (
-        <div className={`${Style.roundTitle} ${Style.circleRound}`}>
-            {<div className={`${Style.rangeTitle} ${Style.circleRound}`}>
-                {item.monthRange}
-            </div>}
-            {
-                <div className={`${Style.selectRange}`} >
-                    {monthsData.map(monthItem =>
-                        <span
-                            key={`${index}_${monthItem.pageIndex}`}
-                            onClick={() => {
-                                onSlideChanged({ item: monthItem.pageIndex })
-                            }}>
-                            <p>{monthItem.year}</p>
-                            <h3>{monthItem.monthRange}</h3>
-                        </span>)}
 
-                </div>}
+    const { state, dispatch } = useContext(MyContext)
+    const { overlayVisible } = state;
+
+    return (
+        <div className={`${Style.roundTitle} ${Style.circleRound} ${overlayVisible ? Style.active : ''}`}
+            onClick={() => {
+                dispatch({ type: 'overlay_open' })
+            }}
+        >
+            <div className={`${Style.rangeTitle} ${Style.circleRound}`}>
+                {item.monthRange}
+            </div>
+            <div className={`${Style.selectRange}`} >
+                {monthsData.map(monthItem =>
+                    <span
+                        key={`${index}_${monthItem.pageIndex}`}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            dispatch({ type: 'overlay_close' })
+                            setTimeout(() => {
+                                onSlideChanged({ item: monthItem.pageIndex })
+                            }, 300)
+                        }}>
+                        <p>{monthItem.year}</p>
+                        <h3>{monthItem.monthRange}</h3>
+                    </span>)}
+            </div>
         </div>
     )
 }
 
 
-
 const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlideChanged }) => {
+    const { state, dispatch } = useContext(MyContext)
+    const { overlayVisible } = state;
     return (
         <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
             <div className={Style.monthHeader}>
@@ -53,22 +65,38 @@ const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlid
                     })}
                 </div>
             </div>
+            {overlayVisible &&
+                <div className={Style.overlay}
+                    onClick={() => {
+                        dispatch({ type: 'overlay_close' })
+                    }}>
+                </div>}
         </div>
     )
 }
 
 function ListEqual(prevProps, nextProps) {
-    return false
-    // return !(nextProps.activeIndex === nextProps.index)
+    return !(nextProps.activeIndex === nextProps.index)
 }
 
 const ListItemComponent = React.memo(ListItem, ListEqual)
 
 const SwipeList = (props) => {
     const { invoiceList, allDetail } = props.data;
-    const [activeIndex, setActiveIndex] = useState(0);
+    const { state, dispatch } = useContext(MyContext)
+    const { activeIndex } = state;
+
+    const cancelOverLay = () => {
+        dispatch({ type: 'overlay_close' })
+    }
+
     const onSlideChanged = ({ item }) => {
-        setActiveIndex(item)
+        dispatch({
+            type: 'set_active',
+            payload: {
+                activeIndex: item
+            }
+        })
     };
 
     const ListView = invoiceList.data.map((item, i) => {
@@ -93,6 +121,7 @@ const SwipeList = (props) => {
             disableButtonsControls
             items={ListView}
             activeIndex={activeIndex}
+            onSlideChange={cancelOverLay}
             onSlideChanged={onSlideChanged}
         />
     )

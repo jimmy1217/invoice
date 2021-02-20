@@ -10,12 +10,19 @@
 //     console.log(detail_data)
 // }
 
-
+import React, { useReducer } from 'react'
+import { MyContext } from '@/store/context-manager'
+import { rootReducer, rootReducer_initState } from '@/store/rootReducer'
 import { getAllData } from './../src/actions'
-import SwipeList from "./../src/components/SwipeList";
+import dynamic from 'next/dynamic'
+const SwipeList = dynamic(() => import(/* webpackChunkName: "Component_SwipeList" */"./../src/components/SwipeList"), {
+    ssr: false
+})
 
 const IndexPage = (props) => {
     // const data = props;
+    const [state, dispatch] = useReducer(rootReducer, rootReducer_initState);
+
     const data = {
         "invoiceList": {
             "data": [
@@ -1624,7 +1631,12 @@ const IndexPage = (props) => {
         }
     }
 
-    return <SwipeList data={data} />
+    return (
+        <MyContext.Provider value={{ state, dispatch }}>
+            <SwipeList data={data} />
+        </MyContext.Provider>
+    )
+
 }
 export default IndexPage
 

@@ -30,7 +30,6 @@ const SwipeList = (props) => {
                 detail={detail}
                 years={years}
                 index={i}
-                activeIndex={activeIndex}
                 onSlideChanged={onSlideChanged} />
         )
     })

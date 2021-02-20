@@ -5,6 +5,7 @@
         "@/store/*": ["/src/store/*"],
         "@/components/*": ["/src/components/*"],
         "@/actions/*": ["/src/actions/*"],
+        "@/constants/*": ["/src/constants/*"],
       }
     }
 }

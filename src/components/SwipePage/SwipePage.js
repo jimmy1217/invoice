@@ -3,9 +3,9 @@ import { MyContext } from '@/store/context-manager';
 import RangeSelect from '@/components/RangeSelect';
 import Style from '@/components/SwipeList/SwipeList.module.css'
 
-const SwipePage = ({ invoiceList, item, detail, years, index, activeIndex, onSlideChanged }) => {
+const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) => {
     const { state, dispatch } = useContext(MyContext)
-    const { overlayVisible } = state;
+    const { overlayVisible, activeIndex } = state;
     const isVisible = overlayVisible === index;
     return useMemo(() => {
         return (

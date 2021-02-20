@@ -1,19 +1,7 @@
-// const cheerio = require('cheerio')
-
-// const fetchData = async () => {
-//     const res = await fetch('https://invoice-nine.vercel.app/all', { method: 'get' })
-//     const html = await res.text();
-//     const $ = cheerio.load(html)
-//     const list_data = JSON.parse($('#list_source').text())
-//     const detail_data = JSON.parse($('#detail_source').text())
-//     console.log(list_data)
-//     console.log(detail_data)
-// }
-
 import React, { useReducer } from 'react'
 import { MyContext } from '@/store/context-manager'
 import { rootReducer, rootReducer_initState } from '@/store/rootReducer'
-import { getAllData } from './../src/actions'
+import { getAllData } from '@/actions/index'
 import dynamic from 'next/dynamic'
 const SwipeList = dynamic(() => import(/* webpackChunkName: "Component_SwipeList" */"./../src/components/SwipeList"), {
     ssr: false

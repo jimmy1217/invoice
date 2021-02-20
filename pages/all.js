@@ -1,5 +1,4 @@
-import { getAllData } from './../src/actions'
-
+import { getAllData } from '@/actions/index'
 
 const List = (props) => {
     return (

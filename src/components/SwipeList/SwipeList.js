@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { MyContext } from '@/store/context-manager';
-import SwipePage from '@/components/SwipePage';
+import SwipePage from './SwipePage';
 import AliceCarousel from 'react-alice-carousel';
 
 const SwipeList = (props) => {

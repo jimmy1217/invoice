@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { MyContext } from '../src/components/SwipeList/SwipePage/RangeSelect/node_modules/@/store/context-manager'
+import { MyContext } from '@/store/context-manager'
 import { rootReducer, rootReducer_initState } from '@/store/rootReducer'
 import { getAllData } from '@/actions/index'
 import dynamic from 'next/dynamic'

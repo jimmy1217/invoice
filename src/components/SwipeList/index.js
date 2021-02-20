@@ -4,19 +4,19 @@ import Style from './SwipeList.module.css'
 import { MyContext } from '@/store/context-manager';
 
 const RangeSelect = ({ item, invoiceList, index, onSlideChanged, activeIndex }) => {
-    const monthsData = invoiceList.data
-        .map((originItem, k) => ({
-            ...originItem,
-            year: Number(originItem.year) + 1911,
-            pageIndex: k
-        }))
-        .filter((item, i) => i >= index - 2 && i < index + 6)
-        .splice(0, 5)
-
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible } = state;
     const isVisible = overlayVisible === index;
     return useMemo(() => {
+        const monthsData = invoiceList.data
+            .map((originItem, k) => ({
+                ...originItem,
+                year: Number(originItem.year) + 1911,
+                pageIndex: k
+            }))
+            .filter((item, i) => i >= index - 2 && i < index + 6)
+            .splice(0, 5)
+
         return (
             <div className={`${Style.roundTitle} ${Style.circleRound} ${isVisible ? Style.active : ''}`}
                 onClick={() => {

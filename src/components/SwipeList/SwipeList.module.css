@@ -7,18 +7,21 @@
 }
 
 .monthHeader {
-    background-color: #6493e7;
+    position: relative;
+    background-color: #336feb;
     box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     display         : flex;
     align-items     : center;
     flex-direction  : column;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
 }
 
 .monthHeader h2 {
     color         : #ddd;
     letter-spacing: 5px;
     font-weight   : 900;
-    color         : #c5d0e4;
+    color         : #cde1fc;
 }
 
 .swipeContent {
@@ -140,7 +143,9 @@
 .detailContent {
     font-family   : 'Roboto Mono', monospace;
     letter-spacing: 2px;
-    color         : #666;
+    color         : #6f7782;
+    display: flex;
+    flex-direction: column;
 }
 
 .detailContent p {
@@ -167,12 +172,14 @@
 .iconBG {
     position: absolute;
     z-index: 1;
-    width:100%;
+    width:110%;
     display: flex;
     justify-content: center;
     opacity: 0.05;
-    font-size: 20rem;
-    bottom:-50px;
+    font-size: 40rem;
+    margin:-20px;
+    top:-250px;
+    left:0;
 }
 
 

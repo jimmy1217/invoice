@@ -17,7 +17,6 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged, activeIndex }) 
     const { overlayVisible } = state;
 
     return useMemo(() => {
-        console.log('range render')
         return (
             <div className={`${Style.roundTitle} ${Style.circleRound} ${overlayVisible ? Style.active : ''}`}
                 onClick={() => {
@@ -52,7 +51,6 @@ const ListItem = ({ invoiceList, item, detail, years, index, activeIndex, onSlid
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible } = state;
     return useMemo(() => {
-        console.log(`list render`)
         return (
             <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
                 <div className={Style.monthHeader}>

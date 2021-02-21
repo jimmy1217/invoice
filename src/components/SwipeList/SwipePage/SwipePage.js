@@ -17,9 +17,9 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
             <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
                 <div className={Style.monthHeader}>
                     <RangeSelect item={item} invoiceList={invoiceList} index={index} onSlideChanged={onSlideChanged} />
-                    <h2>
+                    <h5>
                         {years}
-                    </h2>
+                    </h5>
                     <div className={Style.iconBG}><GiSwirlString /></div>
                 </div>
                 <div className={`${Style.swipeContent}`}>
@@ -29,11 +29,11 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                             return (
                                 <div key={`${item.dataLink}_${k}`} className={Style[detailItem.type]}>
 
-                                    <div>
+                                    <div className={Style.detailRow}>
                                         <div>{detailItem.typeText}</div>
                                         <div>&zwj;{detailItem.code}</div>
                                     </div>
-                                    
+                                    {detailItem.type === 'specialAward' && <hr />}
                                     {/* &zwj;{shortCode} */}
                                 </div>
                             )

@@ -1,5 +1,5 @@
 .swipeMain {
-    height        : 80vh;
+    height: 100vh;
     width         : 100%;
     display       : flex;
     flex-direction: column;
@@ -7,20 +7,22 @@
 }
 
 .monthHeader {
+    height: 200px;
     position: relative;
     background-color: #336feb;
     box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     display         : flex;
-    align-items     : center;
-    flex-direction  : column;
-    border-radius: 0 0 20px 20px;
+    flex-direction: column;
+    border-radius: 0  0 15% 15%;
     overflow: hidden;
+    padding:20px 30px;
 }
 
-.monthHeader h2 {
+.monthHeader h5 {
     color         : #ddd;
+    font-size: 18px;
     letter-spacing: 5px;
-    font-weight   : 900;
+    font-weight   : 600;
     color         : #cde1fc;
 }
 
@@ -44,7 +46,6 @@
 }
 
 .roundTitle {
-    margin-top      : 40px;
     width           : 110px;
     height          : 110px;
     background-color: #79a1e5;
@@ -64,36 +65,6 @@
     transform: scale(2.5);
     opacity  : 0;
     position : absolute;
-}
-
-
-.roundTitle::before {
-    position        : absolute;
-    content         : '';
-    display         : block;
-    background-color: #fff;
-    width           : calc(50vw - 55px);
-    height          : 1px;
-    z-index         : 1;
-    right           : 100%;
-    opacity         : 0.3;
-}
-
-.roundTitle::after {
-    position        : absolute;
-    content         : '';
-    display         : block;
-    background-color: #fff;
-    width           : calc(50vw - 55px);
-    height          : 1px;
-    z-index         : 1;
-    left            : 100%;
-    opacity         : 0.3;
-}
-
-.roundTitle.active::before,
-.roundTitle.active::after {
-    opacity: 0;
 }
 
 .circleRound {
@@ -126,13 +97,9 @@
 }
 
 .roundTitle .selectRange span {
-    display        : flex;
     font-size      : 20px;
     flex           : 1 1 auto;
     height         : 100%;
-    align-items    : center;
-    justify-content: center;
-    flex-direction : column;
 }
 
 .roundTitle .selectRange span:hover {
@@ -141,15 +108,21 @@
 
 
 .detailContent {
-    font-family   : 'Roboto Mono', monospace;
+    padding:50px 30px 0 30px;
     letter-spacing: 2px;
-    color         : #6f7782;
+    /* color         : #6f7782; */
     display: flex;
     flex-direction: column;
 }
 
 .detailContent p {
     font-size: 20px;
+}
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    padding:10px 0;
+    color:#1d2939;
 }
 
 .detailContent p.ultimateAward,

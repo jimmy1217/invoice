@@ -1,5 +1,5 @@
 .swipeMain {
-    height: 100vh;
+    height        : 100vh;
     width         : 100%;
     display       : flex;
     flex-direction: column;
@@ -7,23 +7,25 @@
 }
 
 .monthHeader {
-    height: 200px;
-    position: relative;
+    height          : 200px;
+    position        : relative;
     background-color: #336feb;
     box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     display         : flex;
-    flex-direction: column;
-    border-radius: 0  0 15% 15%;
-    overflow: hidden;
-    padding:20px 30px;
+    flex-direction  : column;
+    border-radius   : 0 0 15% 15%;
+    overflow        : hidden;
+    padding         : 20px 0;
 }
 
 .monthHeader h5 {
     color         : #ddd;
-    font-size: 18px;
+    font-size     : 18px;
     letter-spacing: 5px;
     font-weight   : 600;
     color         : #cde1fc;
+    margin        : 20px 0 0 30px;
+
 }
 
 .swipeContent {
@@ -46,13 +48,14 @@
 }
 
 .roundTitle {
-    width           : 110px;
-    height          : 110px;
+    width           : 100px;
+    height          : 100px;
     background-color: #79a1e5;
     box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     position        : relative;
     z-index         : 2;
     transition      : all 0.3s cubic-bezier(0, 1.41, .66, .93);
+    margin-left     : 30px;
 }
 
 .roundTitle.active {
@@ -72,7 +75,6 @@
     display        : flex;
     justify-content: center;
     align-items    : center;
-    border-radius  : 55px;
 }
 
 .roundTitle .selectRange {
@@ -97,9 +99,9 @@
 }
 
 .roundTitle .selectRange span {
-    font-size      : 20px;
-    flex           : 1 1 auto;
-    height         : 100%;
+    font-size: 20px;
+    flex     : 1 1 auto;
+    height   : 100%;
 }
 
 .roundTitle .selectRange span:hover {
@@ -108,21 +110,22 @@
 
 
 .detailContent {
-    padding:50px 30px 0 30px;
-    letter-spacing: 2px;
+    padding          : 50px 30px 0 30px;
+    letter-spacing   : 2px;
     /* color         : #6f7782; */
-    display: flex;
-    flex-direction: column;
+    display          : flex;
+    flex-direction   : column;
 }
 
 .detailContent p {
     font-size: 20px;
 }
+
 .detailRow {
-    display: flex;
+    display        : flex;
     justify-content: space-between;
-    padding:10px 0;
-    color:#1d2939;
+    padding        : 10px 0;
+    color          : #1d2939;
 }
 
 .detailContent p.ultimateAward,
@@ -131,28 +134,28 @@
 }
 
 .result {
-    position: absolute;
-    left: 0;
-    bottom:20px;
-    display: flex;
-    width: 100%;
+    position       : absolute;
+    left           : 0;
+    bottom         : 20px;
+    display        : flex;
+    width          : 100%;
     justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    color:#ddd;
+    align-items    : center;
+    font-size      : 3rem;
+    color          : #ddd;
 }
 
 .iconBG {
-    position: absolute;
-    z-index: 1;
-    width:110%;
-    display: flex;
+    position       : absolute;
+    z-index        : 1;
+    width          : 110%;
+    display        : flex;
     justify-content: center;
-    opacity: 0.05;
-    font-size: 40rem;
-    margin:-20px;
-    top:-250px;
-    left:0;
+    opacity        : 0.05;
+    font-size      : 40rem;
+    margin         : -20px;
+    top            : -250px;
+    left           : 0;
 }
 
 

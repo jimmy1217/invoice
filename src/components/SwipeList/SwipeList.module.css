@@ -36,18 +36,28 @@
 }
 
 .rangeTitle {
-    /* width           : 80px; */
-    /* height          : 80px; */
     color           : #fff;
     /* background-color: #0052a2; */
     letter-spacing  : 2px;
-    font-weight     : 700;
     font-size       : 18px;
     /* box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%); */
     transition      : all 0.3s ease-out;
-    font-size: 34px;
-    margin     : 20px 0 0 30px;
 }
+.rangeTitle p {
+    display: inline-block;
+    background-color: #153dc8;
+    padding:5px 10px 5px 25px;
+    margin     : 20px 0 0 30px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.rangeTitle h2 {
+    font-size: 34px;
+    font-weight     : 700;
+    margin     : 5px 0 0 30px;
+}
+
 
 .roundTitle {
     width           : 100%;

@@ -29,7 +29,8 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
                 }}
             >
                 <div className={`${Style.rangeTitle}`}>
-                    {MONTH.get(item.monthRange)}
+                    <p>{item.monthRange}月</p>
+                    <h2>{MONTH.get(item.monthRange)}</h2>
                 </div>
                 <div className={`${Style.selectRange}`} >
                     {monthsData.map(monthItem =>

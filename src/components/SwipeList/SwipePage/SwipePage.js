@@ -50,7 +50,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                                     }
                                     <div key={`${item.dataLink}_${k}`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
                                         <div>{detailItem.typeText}</div>
-                                        <div>&zwj;{detailItem.code}</div>
+                                        <div data-short={shortCode}>&zwj;{detailItem.code}</div>
                                         {/* &zwj;{shortCode} */}
                                     </div>
                                     {detailItem.type === 'specialAward' && <hr className={Style.hr} />}

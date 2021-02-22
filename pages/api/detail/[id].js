@@ -1,6 +1,7 @@
 const cheerio = require('cheerio')
 import Cors from 'cors'
 import corsMiddleware from '../../../lib/corsMiddleware'
+import AWARD from '@/constants/AWARD'
 
 const cors = corsMiddleware(
     Cors({
@@ -20,20 +21,23 @@ export default async (req, res) => {
             const $ = cheerio.load(html)
 
             $('.number').each((i, elem) => {
+                const typeText = $(elem).prev().text();
+                const type = AWARD.get(typeText) || 'unknown'
+
                 let value = [];
                 if ($(elem).text().trim().includes(' ')) {
                     value = $(elem).text().trim().split(' ')
                     value.map(item => {
-                        data.push({ code: item });
+                        data.push({ code: item, typeText, type });
                     })
                 } else if ($(elem).text().trim().includes('、')) {
                     value = $(elem).text().trim().split('、')
                     value.map(item => {
-                        data.push({ code: item });
+                        data.push({ code: item, typeText, type });
                     })
                 } else {
                     value = $(elem).text().trim()
-                    data.push({ code: value });
+                    data.push({ code: value, typeText, type });
                 }
             })
             res.json({

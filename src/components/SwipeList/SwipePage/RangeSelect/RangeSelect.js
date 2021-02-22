@@ -1,6 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 import { MyContext } from '@/store/context-manager';
+import MONTH from '@/constants/MONTH'
 import Style from '@/components/SwipeList/SwipeList.module.css'
+
 
 const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
     const { state, dispatch } = useContext(MyContext)
@@ -17,7 +19,7 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
             .splice(0, 5)
 
         return (
-            <div className={`${Style.roundTitle} ${Style.circleRound} ${isVisible ? Style.active : ''}`}
+            <div className={`${Style.roundTitle} ${isVisible ? Style.active : ''}`}
                 onClick={() => {
                     dispatch({
                         type: 'overlay_open', payload: {
@@ -26,8 +28,8 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
                     })
                 }}
             >
-                <div className={`${Style.rangeTitle} ${Style.circleRound}`}>
-                    {item.monthRange}
+                <div className={`${Style.rangeTitle}`}>
+                    {MONTH.get(item.monthRange)}
                 </div>
                 <div className={`${Style.selectRange}`} >
                     {monthsData.map(monthItem =>

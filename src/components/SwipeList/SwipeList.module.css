@@ -1,5 +1,5 @@
 .swipeMain {
-    height        : 80vh;
+    height        : 100vh;
     width         : 100%;
     display       : flex;
     flex-direction: column;
@@ -7,18 +7,25 @@
 }
 
 .monthHeader {
-    background-color: #6493e7;
+    height          : 200px;
+    position        : relative;
+    background-color: #336feb;
     box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
     display         : flex;
-    align-items     : center;
     flex-direction  : column;
+    border-radius   : 0 0 15% 15%;
+    overflow        : hidden;
+    padding         : 20px 0;
 }
 
-.monthHeader h2 {
+.monthHeader h5 {
     color         : #ddd;
+    font-size     : 18px;
     letter-spacing: 5px;
-    font-weight   : 900;
-    color         : #c5d0e4;
+    font-weight   : 600;
+    color         : #cde1fc;
+    margin        : 5px 0 0 30px;
+
 }
 
 .swipeContent {
@@ -29,26 +36,48 @@
 }
 
 .rangeTitle {
-    width           : 80px;
-    height          : 80px;
-    color           : #ddd;
-    background-color: #0052a2;
-    letter-spacing  : 2px;
-    font-weight     : 700;
-    font-size       : 18px;
-    box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
-    transition      : all 0.3s ease-out;
+    color              : #fff;
+    /* background-color: #0052a2; */
+    letter-spacing     : 2px;
+    font-size          : 18px;
+    /* box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%); */
+    transition         : all 0.3s ease-out;
 }
 
-.roundTitle {
-    margin-top      : 40px;
-    width           : 110px;
-    height          : 110px;
-    background-color: #79a1e5;
-    box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+.rangeTitle p {
     position        : relative;
-    z-index         : 2;
-    transition      : all 0.3s cubic-bezier(0, 1.41, .66, .93);
+    display         : inline-block;
+    background-color: #153dc8;
+    padding         : 10px 20px 10px 35px;
+    margin          : 20px 0 0 30px;
+    border-radius   : 20px;
+    font-size       : 14px;
+}
+
+.rangeTitle p::before {
+    position        : absolute;
+    content         : '';
+    width           : 10px;
+    height          : 10px;
+    background-color: #ff6546;
+    top             : 15px;
+    left            : 15px;
+    border-radius   : 10px;
+}
+
+.rangeTitle h2 {
+    font-size  : 34px;
+    font-weight: 700;
+    margin     : 5px 0 0 30px;
+}
+
+
+.roundTitle {
+    width              : 100%;
+    /* height          : 100px; */
+    position           : relative;
+    z-index            : 2;
+    transition         : all 0.3s cubic-bezier(0, 1.41, .66, .93);
 }
 
 .roundTitle.active {
@@ -63,42 +92,11 @@
     position : absolute;
 }
 
-
-.roundTitle::before {
-    position        : absolute;
-    content         : '';
-    display         : block;
-    background-color: #fff;
-    width           : calc(50vw - 55px);
-    height          : 1px;
-    z-index         : 1;
-    right           : 100%;
-    opacity         : 0.3;
-}
-
-.roundTitle::after {
-    position        : absolute;
-    content         : '';
-    display         : block;
-    background-color: #fff;
-    width           : calc(50vw - 55px);
-    height          : 1px;
-    z-index         : 1;
-    left            : 100%;
-    opacity         : 0.3;
-}
-
-.roundTitle.active::before,
-.roundTitle.active::after {
-    opacity: 0;
-}
-
 .circleRound {
     text-align     : center;
     display        : flex;
     justify-content: center;
     align-items    : center;
-    border-radius  : 55px;
 }
 
 .roundTitle .selectRange {
@@ -123,13 +121,9 @@
 }
 
 .roundTitle .selectRange span {
-    display        : flex;
-    font-size      : 20px;
-    flex           : 1 1 auto;
-    height         : 100%;
-    align-items    : center;
-    justify-content: center;
-    flex-direction : column;
+    font-size: 20px;
+    flex     : 1 1 auto;
+    height   : 100%;
 }
 
 .roundTitle .selectRange span:hover {
@@ -138,13 +132,22 @@
 
 
 .detailContent {
-    font-family   : 'Roboto Mono', monospace;
-    letter-spacing: 2px;
-    color         : #666;
+    padding          : 50px 30px 0 30px;
+    letter-spacing   : 2px;
+    /* color         : #6f7782; */
+    display          : flex;
+    flex-direction   : column;
 }
 
 .detailContent p {
     font-size: 20px;
+}
+
+.detailRow {
+    display        : flex;
+    justify-content: space-between;
+    padding        : 10px 0;
+    color          : #1d2939;
 }
 
 .detailContent p.ultimateAward,
@@ -153,26 +156,28 @@
 }
 
 .result {
-    position: absolute;
-    left: 0;
-    bottom:20px;
-    display: flex;
-    width: 100%;
+    position       : absolute;
+    left           : 0;
+    bottom         : 20px;
+    display        : flex;
+    width          : 100%;
     justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    color:#ddd;
+    align-items    : center;
+    font-size      : 3rem;
+    color          : #ddd;
 }
 
 .iconBG {
-    position: absolute;
-    z-index: 1;
-    width:100%;
-    display: flex;
+    position       : absolute;
+    z-index        : 1;
+    width          : 110%;
+    display        : flex;
     justify-content: center;
-    opacity: 0.05;
-    font-size: 20rem;
-    bottom:-50px;
+    opacity        : 0.05;
+    font-size      : 40rem;
+    margin         : -20px;
+    top            : -250px;
+    left           : 0;
 }
 
 

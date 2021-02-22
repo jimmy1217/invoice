@@ -3,7 +3,7 @@ html, body, #__next {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
     segoe ui, arial, sans-serif;
-    background: #f2f7ff;
+    background: #f3f6fb;
 }
 
 #__next {
@@ -12,6 +12,7 @@ html, body, #__next {
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 

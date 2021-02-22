@@ -40,8 +40,10 @@ export default async (req, res) => {
                     data.push({ code: value, typeText, type });
                 }
             })
+            const desc = $('.des p')?.eq(0)?.text()?.split('，')[0]?.replace(/[\s]|、|1\.|１/g, '') ?? '';
             res.json({
-                data
+                data,
+                desc
             })
         } catch (error) {
             return res.json({

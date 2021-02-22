@@ -41,7 +41,7 @@ export default async (req, res) => {
                 }
             })
 
-            const source = $('.des p').eq(0).text() || $('.des p').eq(1).text() || $('.des div').eq(0).text();
+            const source = $('.des p').eq(0).text()?.trim() || $('.des p').eq(1).text()?.trim() || $('.des div').eq(0).text()?.trim();
             const desc = source.split('，')[0]?.replace(/[\s]|、|1\.|１/g, '') ?? '';
             res.json({
                 data,

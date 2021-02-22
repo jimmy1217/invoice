@@ -25,13 +25,13 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                 <div className={`${Style.swipeContent}`}>
                     <div className={Style.descContent}>
                         <div>
-                            <small>領獎期限</small>
+                            <small className={Style.smallTitle}>領獎期限</small>
                             <p>
                                 {detail.desc}
                             </p>
                         </div>
                         <div>
-                            <small>快速比對</small>
+                            <small className={Style.smallTitle}>快速比對</small>
                             <p className={Style.result}>
                                 {resultCode}
                             </p>
@@ -41,15 +41,21 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                         {detail.data.map((detailItem, k) => {
                             const shortCode = String(detailItem.code).substr(-3, String(detailItem.code).length);
                             return (
-                                <div key={`${item.dataLink}_${k}`} className={Style[detailItem.type]}>
-
-                                    <div className={Style.detailRow}>
+                                <React.Fragment>
+                                    {k === 0 &&
+                                        <div key={`${item.dataLink}_${k}`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
+                                            <div><small className={Style.smallTitle}>中獎類型</small></div>
+                                            <div><small className={Style.smallTitle}>中獎號</small></div>
+                                        </div>
+                                    }
+                                    <div key={`${item.dataLink}_${k}`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
                                         <div>{detailItem.typeText}</div>
                                         <div>&zwj;{detailItem.code}</div>
+                                        {/* &zwj;{shortCode} */}
                                     </div>
-                                    {detailItem.type === 'specialAward' && <hr />}
-                                    {/* &zwj;{shortCode} */}
-                                </div>
+                                    {detailItem.type === 'specialAward' && <hr className={Style.hr} />}
+                                </React.Fragment>
+
                             )
                         })}
                     </div>

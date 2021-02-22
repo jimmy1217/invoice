@@ -40,7 +40,8 @@ export default async (req, res) => {
                     data.push({ code: value, typeText, type });
                 }
             })
-            const desc = $('.des p')?.eq(0)?.text()?.split('，')[0]?.replace(/[\s]|、|1\.|１/g, '') ?? '';
+            const source = !!$('.des p').eq(0).text().trim().length ? 0 : 1;
+            const desc = $('.des p')?.eq(0)?.text()?.split('，')[source]?.replace(/[\s]|、|1\.|１/g, '') ?? '';
             res.json({
                 data,
                 desc

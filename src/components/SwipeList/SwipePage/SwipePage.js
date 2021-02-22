@@ -41,14 +41,14 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                         {detail.data.map((detailItem, k) => {
                             const shortCode = String(detailItem.code).substr(-3, String(detailItem.code).length);
                             return (
-                                <React.Fragment>
+                                <React.Fragment key={`${item.dataLink}_${k}`}>
                                     {k === 0 &&
-                                        <div key={`${item.dataLink}_${k}`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
+                                        <div key={`${item.dataLink}_${k}_title`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
                                             <div><small className={Style.smallTitle}>中獎類型</small></div>
                                             <div><small className={Style.smallTitle}>中獎號</small></div>
                                         </div>
                                     }
-                                    <div key={`${item.dataLink}_${k}`} className={`${Style[detailItem.type]} ${Style.detailRow}`}>
+                                    <div className={`${Style[detailItem.type]} ${Style.detailRow}`}>
                                         <div>{detailItem.typeText}</div>
                                         <div data-short={shortCode}>&zwj;{detailItem.code}</div>
                                         {/* &zwj;{shortCode} */}

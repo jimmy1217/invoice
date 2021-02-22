@@ -13,6 +13,7 @@ export const getAllData = async () => {
         pre[item.dataLink] = allRes[i]
         return pre
     }, {})
+    
     return ({
         invoiceList,
         allDetail,

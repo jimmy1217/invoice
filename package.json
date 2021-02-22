@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "n": "nvm use 12.18.2",
     "dev": "next",
     "build": "next build",
     "start": "next start",

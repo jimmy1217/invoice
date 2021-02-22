@@ -23,6 +23,20 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                     <div className={Style.iconBG}><GiSwirlString /></div>
                 </div>
                 <div className={`${Style.swipeContent}`}>
+                    <div className={Style.descContent}>
+                        <div>
+                            <small>領獎期限</small>
+                            <p>
+                                {detail.desc}
+                            </p>
+                        </div>
+                        <div>
+                            <small>快速比對</small>
+                            <p className={Style.result}>
+                                {resultCode}
+                            </p>
+                        </div>
+                    </div>
                     <div className={Style.detailContent}>
                         {detail.data.map((detailItem, k) => {
                             const shortCode = String(detailItem.code).substr(-3, String(detailItem.code).length);
@@ -38,10 +52,6 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                                 </div>
                             )
                         })}
-                      
-                        <div className={Style.result}>
-                            {resultCode}
-                        </div>
                     </div>
                 </div>
                 {isVisible &&

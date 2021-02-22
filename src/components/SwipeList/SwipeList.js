@@ -34,6 +34,7 @@ const SwipeList = (props) => {
         )
     })
 
+
     return (
         <AliceCarousel
             mouseTracking

@@ -8,14 +8,26 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible, activeIndex } = state;
     const isVisible = overlayVisible === index;
+
+
+
     return useMemo(() => {
         const resultCode = detail.data.map(detailItem => String(detailItem.code)
             .substr(-1, String(detailItem.code).length))
             .sort((a, b) => Number(a) - Number(b))
             .join('')
+
+        const monthsData = invoiceList.data
+            .map((originItem, k) => ({
+                ...originItem,
+                year: Number(originItem.year) + 1911,
+                pageIndex: k
+            }))
+            .filter((item, i) => i >= index - 2 && i < index + 6)
+            .splice(0, 5)
         return (
             <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
-                <div className={Style.monthHeader}>
+                <div className={`${Style.monthHeader} ${overlayVisible ? Style.blur : ''}`}>
                     <RangeSelect item={item} invoiceList={invoiceList} index={index} onSlideChanged={onSlideChanged} />
                     <h5>
                         {years}
@@ -37,7 +49,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                             </p>
                         </div>
                     </div>
-                    <div className={Style.detailContent}>
+                    <div className={`${Style.detailContent} ${overlayVisible ? Style.blur : ''}`}>
                         {detail.data.map((detailItem, k) => {
                             const shortCode = String(detailItem.code).substr(-3, String(detailItem.code).length);
                             return (
@@ -66,6 +78,22 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                             dispatch({ type: 'overlay_close' })
                         }}>
                     </div>}
+
+                {/* <div className={`${Style.selectRange}`} >
+                    {monthsData.map(monthItem =>
+                        <div
+                            key={`${index}_${monthItem.pageIndex}`}
+                            className={`${Style.rangeTitle}`}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                dispatch({ type: 'overlay_close' })
+                                setTimeout(() => {
+                                    onSlideChanged({ item: monthItem.pageIndex })
+                                }, 300)
+                            }}>
+                            <p>{monthItem.monthRange}月 {monthItem.year}</p>
+                        </div>)}
+                </div> */}
             </div>
         )
     }, [isVisible, activeIndex === index])

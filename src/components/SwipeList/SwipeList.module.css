@@ -10,12 +10,14 @@
     height          : 200px;
     position        : relative;
     background-color: #336feb;
-    /* box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%); */
+    box-shadow      : 0px 3px 3px -2px rgb(0 0 0 / 10%), 0px 3px 4px 0px rgb(0 0 0 / 7%), 0px 1px 8px 0px rgb(0 0 0 / 6%);
     display         : flex;
     flex-direction  : column;
-    border-radius   : 0 0 15px 15px;
+    border-radius   : 20px;
     overflow        : hidden;
     padding         : 20px 0;
+    width:98%;
+    margin:0 1%;
 }
 
 .monthHeader h5 {

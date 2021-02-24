@@ -9,8 +9,6 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
     const { overlayVisible, activeIndex } = state;
     const isVisible = overlayVisible === index;
 
-
-
     return useMemo(() => {
         const resultCode = detail.data.map(detailItem => String(detailItem.code)
             .substr(-1, String(detailItem.code).length))
@@ -25,16 +23,17 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
             }))
             .filter((item, i) => i >= index - 2 && i < index + 6)
             .splice(0, 5)
+
         return (
             <div key={`${years}${item.dataLink}`} className={Style.swipeMain}>
-                <div className={`${Style.monthHeader} ${overlayVisible ? Style.blur : ''}`}>
+                <div className={`${Style.monthHeader} ${isVisible ? Style.blur : ''}`}>
                     <RangeSelect item={item} invoiceList={invoiceList} index={index} onSlideChanged={onSlideChanged} />
                     <h5>
                         {years}
                     </h5>
                     <div className={Style.iconBG}><GiSwirlString /></div>
                 </div>
-                <div className={`${Style.swipeContent}`}>
+                <div className={`${Style.swipeContent} ${isVisible ? Style.blur : ''}`}>
                     <div className={Style.descContent}>
                         <div>
                             <small className={Style.smallTitle}>領獎期限</small>
@@ -49,7 +48,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                             </p>
                         </div>
                     </div>
-                    <div className={`${Style.detailContent} ${overlayVisible ? Style.blur : ''}`}>
+                    <div className={`${Style.detailContent} ${isVisible ? Style.blur : ''}`}>
                         {detail.data.map((detailItem, k) => {
                             const shortCode = String(detailItem.code).substr(-3, String(detailItem.code).length);
                             return (
@@ -79,21 +78,22 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                         }}>
                     </div>}
 
-                {/* <div className={`${Style.selectRange}`} >
-                    {monthsData.map(monthItem =>
-                        <div
-                            key={`${index}_${monthItem.pageIndex}`}
-                            className={`${Style.rangeTitle}`}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                dispatch({ type: 'overlay_close' })
-                                setTimeout(() => {
-                                    onSlideChanged({ item: monthItem.pageIndex })
-                                }, 300)
-                            }}>
-                            <p>{monthItem.monthRange}月 {monthItem.year}</p>
-                        </div>)}
-                </div> */}
+                
+                    <div className={`${Style.selectRange} ${isVisible?Style.active:''}`} >
+                        {monthsData.map(monthItem =>
+                            <div
+                                key={`${index}_${monthItem.pageIndex}`}
+                                className={`${Style.rangeTitle}`}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    dispatch({ type: 'overlay_close' })
+                                    setTimeout(() => {
+                                        onSlideChanged({ item: monthItem.pageIndex })
+                                    }, 200)
+                                }}>
+                                <p>{monthItem.monthRange}月 {monthItem.year}</p>
+                            </div>)}
+                    </div>
             </div>
         )
     }, [isVisible, activeIndex === index])

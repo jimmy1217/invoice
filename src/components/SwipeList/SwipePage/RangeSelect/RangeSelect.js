@@ -10,18 +10,16 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
     const isVisible = overlayVisible === index;
     return useMemo(() => {
         return (
-            <div className={`${Style.roundTitle} ${isVisible ? Style.active : ''}`}
-                onClick={() => {
-                    console.log('on click')
-                    dispatch({
-                        type: 'overlay_open', payload: {
-                            overlayIndex: index
-                        }
-                    })
-                }}
-            >
-                <div className={`${Style.rangeTitle}`}>
-                    <p>{item.monthRange}月</p>
+            <div className={`${Style.roundTitle}`}>
+                <div className={`${Style.rangeTitle}`}
+                    onClick={() => {
+                        dispatch({
+                            type: 'overlay_open', payload: {
+                                overlayIndex: index
+                            }
+                        })
+                    }}>
+                    <p className={`${isVisible ? Style.active : ''}`}>{item.monthRange}月</p>
                     <h2>{MONTH.get(item.monthRange)}</h2>
                 </div>
             </div>

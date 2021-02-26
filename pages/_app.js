@@ -28,9 +28,38 @@ function testAPI() {                      // Testing Graph API after login.  See
         console.log(`res`, response)
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-    }, { scope: 'email' });
+    });
 }
 
+function MyFBLogin() {
+    FB.getLoginStatus(function (res) {
+        console.log(`status:${res.status}`);//Debug
+        if (res.status === "connected") {
+            let userID = res["authResponse"]["userID"];
+            console.log("用戶已授權您的App，用戶須先revoke撤除App後才能再重新授權你的App");
+            console.log(`已授權App登入FB 的 userID:${userID}`);
+            testAPI();
+        } else if (res.status === 'not_authorized' || res.status === "unknown") {
+            //App未授權或用戶登出FB網站才讓用戶執行登入動作
+            FB.login(function (response) {
+
+                //console.log(response); //debug用
+                if (response.status === 'connected') {
+                    //user已登入FB
+                    //抓userID
+                    let userID = response["authResponse"]["userID"];
+                    console.log(`已授權App登入FB 的 userID:${userID}`);
+                    testAPI();
+
+                } else {
+                    // user FB取消授權
+                    alert("Facebook帳號無法登入");
+                }
+                //"public_profile"可省略，仍然可以取得name、userID
+            }, { scope: 'email' });
+        }
+    });
+}
 
 
 function MyApp({ Component, pageProps }) {
@@ -67,12 +96,9 @@ function MyApp({ Component, pageProps }) {
                         statusChangeCallback(response);
                     });
                 }}>check status</div>
-
                 <div onClick={() => { checkLoginState() }}>checkLoginState</div>
                 <div onClick={() => { testAPI() }}>test api</div>
-
-
-
+                <div onClick={() => { MyFBLogin() }}>my fb login</div>
                 <Component {...pageProps} />
             </div>
 

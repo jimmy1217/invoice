@@ -31,6 +31,13 @@ function testAPI() {                      // Testing Graph API after login.  See
     });
 }
 
+function FBLogout() {
+    FB.logout(function (response) {
+        console.log(response)
+        // user is now logged out
+    });
+}
+
 function MyFBLogin() {
     FB.getLoginStatus(function (res) {
         console.log(`status:${res.status}`);//Debug
@@ -73,15 +80,15 @@ function Del_FB_App() {
                 console.log(response); //gives true on app delete success
                 //最後一個參數傳遞true避免cache
                 FB.getLoginStatus(function (res) { }, true);//強制刷新cache避免login status下次誤判
-                
+
             });
 
-        } else { 
+        } else {
             console.log("無法刪除FB App");
         }
     });
-     
-} 
+
+}
 
 
 function MyApp({ Component, pageProps }) {
@@ -121,7 +128,8 @@ function MyApp({ Component, pageProps }) {
                 <div onClick={() => { checkLoginState() }}>checkLoginState</div>
                 <div onClick={() => { testAPI() }}>test api</div>
                 <div onClick={() => { MyFBLogin() }}>my fb login</div>
-                <div onClick={()=>{Del_FB_App()}}>unbind fb</div>
+                <div onClick={() => { FBLogout() }}>FB logout</div>
+                <div onClick={() => { Del_FB_App() }}>unbind fb</div>
                 <Component {...pageProps} />
             </div>
 

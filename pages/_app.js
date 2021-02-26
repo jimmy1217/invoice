@@ -3,20 +3,6 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import "./../src/css/global.css"
 import Head from 'next/head'
 
-if (process.browser) {
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '{app-id}',
-            cookie: true,                     // Enable cookies to allow the server to access the session.
-            xfbml: true,                     // Parse social plugins on this webpage.
-            version: '{api-version}'           // Use this Graph API version for this call.
-        });
-        FB.getLoginStatus(function (response) {   // Called after the JS SDK has been initialized.
-            statusChangeCallback(response);        // Returns the login status.
-        });
-    };
-}
-
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.

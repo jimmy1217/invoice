@@ -23,9 +23,9 @@ function checkLoginState() {               // Called when a person is finished w
 
 function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function (response) {
+    FB.api('/me', "GET", { fields: 'last_name,first_name,name,email' }, function (response) {
         console.log('Successful login for: ' + response.name);
-        console.log(`res`,response)
+        console.log(`res`, response)
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
     });

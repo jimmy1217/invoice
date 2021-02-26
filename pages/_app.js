@@ -28,7 +28,7 @@ function testAPI() {                      // Testing Graph API after login.  See
         console.log(`res`, response)
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
-    });
+    }, { scope: 'email' });
 }
 
 

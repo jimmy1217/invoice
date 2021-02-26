@@ -21,7 +21,19 @@ function MyApp({ Component, pageProps }) {
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=135408438457379" nonce="HlDwQEUp"></script>
             </Head>
-            <Component {...pageProps} />
+            <div>
+                <div id="fb-root"></div>
+                <div className="fb-login-button"
+                    data-width=""
+                    data-size="large"
+                    data-button-type="continue_with"
+                    data-layout="rounded"
+                    data-auto-logout-link="true"
+                    data-use-continue-as="false">
+                </div>
+                <Component {...pageProps} />
+            </div>
+            
         </div>
     )
 }

@@ -42,15 +42,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                 </div>
                 <div className={`${Style.swipeContent} ${isVisible ? Style.blur : ''}`}>
                     <div className={Style.descContent}>
-                        <div id="fb-root"></div>
-                        <div className="fb-login-button"
-                            data-width=""
-                            data-size="large"
-                            data-button-type="continue_with"
-                            data-layout="rounded"
-                            data-auto-logout-link="true"
-                            data-use-continue-as="false">
-                        </div>
+                       
                         {/* <div onClick={() => {
                             checkLoginState()
                         }}> check Status</div> */}

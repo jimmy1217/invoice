@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { checkLoginState, testAPI, MyFBLogin, FBLogout, Del_FB_App, statusChangeCallback } from './actions'
 
-
 const FbLogin = () => {
     useEffect(() => {
         window.fbAsyncInit = function () {

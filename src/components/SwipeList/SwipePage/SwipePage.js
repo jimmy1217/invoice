@@ -4,13 +4,6 @@ import RangeSelect from './RangeSelect';
 import Style from '@/components/SwipeList/SwipeList.module.css'
 import { GiSwirlString } from "react-icons/gi";
 
-function checkLoginState() {
-    FB.getLoginStatus(function (response) {
-        console.log(response)
-        // statusChangeCallback(response);
-    });
-}
-
 const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) => {
     const { state, dispatch } = useContext(MyContext)
     const { overlayVisible, activeIndex } = state;
@@ -42,11 +35,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                 </div>
                 <div className={`${Style.swipeContent} ${isVisible ? Style.blur : ''}`}>
                     <div className={Style.descContent}>
-                       
-                        {/* <div onClick={() => {
-                            checkLoginState()
-                        }}> check Status</div> */}
-                        {/* <div>
+                        <div>
                             <small className={Style.smallTitle}>領獎期限</small>
                             <p>
                                 {detail.desc}
@@ -57,7 +46,7 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                             <p className={Style.result}>
                                 {resultCode}
                             </p>
-                        </div> */}
+                        </div>
                     </div>
                     <div className={`${Style.detailContent} ${isVisible ? Style.blur : ''}`}>
                         {detail.data.map((detailItem, k) => {

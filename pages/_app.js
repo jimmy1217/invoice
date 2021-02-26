@@ -4,8 +4,6 @@ import "./../src/css/global.css"
 import Head from 'next/head'
 
 if (process.browser) {
-   
-
     window.fbAsyncInit = function () {
         FB.init({
             appId: '{app-id}',
@@ -13,14 +11,10 @@ if (process.browser) {
             xfbml: true,                     // Parse social plugins on this webpage.
             version: '{api-version}'           // Use this Graph API version for this call.
         });
-
-
         FB.getLoginStatus(function (response) {   // Called after the JS SDK has been initialized.
             statusChangeCallback(response);        // Returns the login status.
         });
     };
-
-   
 }
 
 function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
@@ -39,6 +33,8 @@ function checkLoginState() {               // Called when a person is finished w
         statusChangeCallback(response);
     });
 }
+
+
 function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function (response) {
@@ -84,6 +80,9 @@ function MyApp({ Component, pageProps }) {
                         statusChangeCallback(response);
                     });
                 }}>check status</div>
+
+                <div onClick={() => { checkLoginState() }}>checkLoginState</div>
+                <div onClick={() => { testAPI() }}>test api</div>
 
 
 

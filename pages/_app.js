@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0&appId=135408438457379" nonce="HlDwQEUp"></script>
             </Head>
             <Component {...pageProps} />
         </div>

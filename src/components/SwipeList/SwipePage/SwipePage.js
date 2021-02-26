@@ -42,9 +42,18 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                 </div>
                 <div className={`${Style.swipeContent} ${isVisible ? Style.blur : ''}`}>
                     <div className={Style.descContent}>
-                        <div onClick={() => {
+                        
+                        <div className="fb-login-button"
+                            data-width=""
+                            data-size="large"
+                            data-button-type="continue_with"
+                            data-layout="rounded"
+                            data-auto-logout-link="true"
+                            data-use-continue-as="false">
+                        </div>
+                        {/* <div onClick={() => {
                             checkLoginState()
-                        }}> fb login</div>
+                        }}> check Status</div> */}
                         {/* <div>
                             <small className={Style.smallTitle}>領獎期限</small>
                             <p>

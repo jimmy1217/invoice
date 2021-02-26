@@ -1,4 +1,11 @@
-export function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+export function checkLoginState(fn) {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function (response) {   // See the onlogin handler
+        fn(response);
+    });
+}
+
+
+function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
@@ -9,11 +16,7 @@ export function statusChangeCallback(response) {  // Called with the results fro
     }
 }
 
-export function checkLoginState() {               // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function (response) {   // See the onlogin handler
-        statusChangeCallback(response);
-    });
-}
+
 
 
 export function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.

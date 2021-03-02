@@ -102,6 +102,7 @@ class FbLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            connectStatus: false,
             name: '',
             email: '',
             id: '',
@@ -109,7 +110,7 @@ class FbLogin extends Component {
     }
     componentDidMount() {
         this.initFbSDK()
-        this.checkStatus();
+        this.init();
     }
 
     initFbSDK = () => {
@@ -132,42 +133,86 @@ class FbLogin extends Component {
         }(document, 'script', 'facebook-jssdk'));
     }
 
-    fbLogin = () => {
-        FB.login(function (response) {
-            if (response.status === 'connected') {
-                let userID = response["authResponse"]["userID"];
-                console.log(`已授權App登入FB 的 userID:${userID}`);
-                this.getProfile();
-            } else {
-                // user FB取消授權
-                alert("Facebook帳號無法登入");
-            }
-            //"public_profile"可省略，仍然可以取得name、userID
-        }, { scope: 'email' });
+    init = async () => {
+        this.checkStatus()
+            .then((res) => {
+                this.setState({
+                    connectStatus: true
+                }, () => {
+                    this.getProfile()
+                        .then(profileRes => {
+                            console.log(profileRes)
+                        })
+                        .catch(profileErr => {
+                            console.log('get profile error')
+                        })
+                })
+            })
+            .catch(err => {
+                console.log('disconnect')
+            })
     }
 
-    checkStatus = async () => {
-        FB.getLoginStatus(function (response) {
-            if (response.status === 'connected') {
-                this.getProfile()
-            } else {
-                console.log('is logout')
-            }
-
+    fbLogin = () => {
+        return new Promise((resolve, reject) => {
+            FB.login((response) => {
+                response.status === 'connected' ? resolve(response) : reject(response);
+            }, { scope: 'email' });
         });
     }
 
-    getProfile = async () => {
-        return await FB.api('/me', "GET", { fields: 'last_name,first_name,name,email' });
+    fbLogout = () => {
+        return new Promise((resolve, reject) => {
+            FB.logout((response) => {
+                response.authResponse ? resolve(response) : reject(response);
+            });
+        });
+    }
+
+    checkStatus = () => {
+        return new Promise((resolve, reject) => {
+            FB.getLoginStatus((response) => {
+                response.status === 'connected' ? resolve(response) : reject(response);
+            });
+        });
+    }
+
+
+
+    getProfile = () => {
+        return new Promise((resolve, reject) => {
+            FB.api('/me', "GET", { fields: 'first_name, last_name, email' },
+                response => response.error ? reject(response) : resolve(response)
+            );
+        });
+    }
+
+    getStatus = async () => {
+        try {
+            const res = await this.checkStatus()
+            console.log(res)
+        } catch (error) {
+            
+        }
+    
+    }
+    logout = async () => {
+        try {
+            const res = await this.fbLogout();
+            console.log(res)
+        } catch (error) {
+            
+        }
     }
 
     render() {
+        const { connectStatus } = this.state;
         return (
             <>
-                <p onClick={this.fbLogin}>Facebook Login</p>
-                <p>Check Status</p>
-                <p>Log Out</p>
-                <p>Unbind Facebook</p>
+                {!connectStatus && <p onClick={this.fbLogin}>Facebook Login</p>}
+                <p onClick={this.getStatus}>Check Status</p>
+                {connectStatus && <p onClick={this.logout}>Log Out</p>}
+                {<p>Log Out</p> && <p>Unbind Facebook</p>}
             </>
         );
     }

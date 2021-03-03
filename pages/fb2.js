@@ -136,9 +136,7 @@ class FbLogin extends Component {
     init = async () => {
         this.checkStatus()
             .then((res) => {
-                this.setState({
-                    connectStatus: true
-                }, () => {
+                this.setState({ connectStatus: res.status }, () => {
                     this.getProfile()
                         .then(profileRes => {
                             console.log(profileRes)
@@ -149,6 +147,8 @@ class FbLogin extends Component {
                 })
             })
             .catch(err => {
+                this.setState({ connectStatus: err.status })
+                console.log(err)
                 console.log('disconnect')
             })
     }
@@ -187,31 +187,48 @@ class FbLogin extends Component {
         });
     }
 
+
+
     getStatus = async () => {
         try {
             const res = await this.checkStatus()
             console.log(res)
         } catch (error) {
-            
+            console.log(`catch getStatus`, error)
         }
-    
+
+    }
+    login = async () => {
+        try {
+            const res = await this.fbLogin()
+            this.setState({ connectStatus: res.status })
+            console.log(res)
+        } catch (error) {
+            this.setState({ connectStatus: error.status })
+            console.log(`catch login`, error)
+        }
+
     }
     logout = async () => {
         try {
             const res = await this.fbLogout();
+            this.setState({ connectStatus: res.status })
             console.log(res)
         } catch (error) {
-            
+            this.setState({ connectStatus: error.status })
+            console.log(`catch logout`, error)
         }
+
     }
 
     render() {
         const { connectStatus } = this.state;
+        console.log(connectStatus)
         return (
             <>
-                {!connectStatus && <p onClick={this.fbLogin}>Facebook Login</p>}
+                {connectStatus === 'not_authorized' || connectStatus === 'unknown' && <p onClick={this.login}>Facebook Login</p>}
                 <p onClick={this.getStatus}>Check Status</p>
-                {connectStatus && <p onClick={this.logout}>Log Out</p>}
+                {connectStatus === 'connected' && <p onClick={this.logout}>Log Out</p>}
                 {<p>Log Out</p> && <p>Unbind Facebook</p>}
             </>
         );

@@ -7,7 +7,16 @@ html, body, #__next {
 }
 
 #__next {
+    position: fixed;    /* 防止 ios 橡皮筋 */
+    width:100%;
     overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+    #__next {
+        max-width: 440px;
+        margin:0 auto;
+    }
 }
 
 * {

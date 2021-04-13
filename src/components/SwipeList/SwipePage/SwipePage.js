@@ -62,7 +62,6 @@ const SwipePage = ({ invoiceList, item, detail, years, index, onSlideChanged }) 
                                     <div className={`${Style[detailItem.type]} ${Style.detailRow}`}>
                                         <div>{detailItem.typeText}</div>
                                         <div data-short={shortCode}>&zwj;{detailItem.code}</div>
-                                        {/* &zwj;{shortCode} */}
                                     </div>
                                     {detailItem.type === 'specialAward' && <hr className={Style.hr} />}
                                 </React.Fragment>

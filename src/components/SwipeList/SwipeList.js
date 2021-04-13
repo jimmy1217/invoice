@@ -20,19 +20,21 @@ const SwipeList = (props) => {
         })
     };
 
-    const ListView = invoiceList.data.map((item, i) => {
-        const detail = allDetail[item.dataLink];
-        const years = Number(item.year) + 1911;
-        return (
-            <SwipePage
-                invoiceList={invoiceList}
-                item={item}
-                detail={detail}
-                years={years}
-                index={i}
-                onSlideChanged={onSlideChanged} />
-        )
-    })
+    const ListView = useMemo(() => {
+        return invoiceList.data.map((item, i) => {
+            const detail = allDetail[item.dataLink];
+            const years = Number(item.year) + 1911;
+            return (
+                <SwipePage
+                    invoiceList={invoiceList}
+                    item={item}
+                    detail={detail}
+                    years={years}
+                    index={i}
+                    onSlideChanged={onSlideChanged} />
+            )
+        })
+    }, [invoiceList.length])
 
 
     return (

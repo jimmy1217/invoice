@@ -14,7 +14,8 @@ const RangeSelect = ({ item, invoiceList, index, onSlideChanged }) => {
                 <div className={`${Style.rangeTitle}`}
                     onClick={() => {
                         dispatch({
-                            type: 'overlay_open', payload: {
+                            type: 'overlay_open',
+                            payload: {
                                 overlayIndex: index
                             }
                         })

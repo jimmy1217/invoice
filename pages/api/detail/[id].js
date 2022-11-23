@@ -33,7 +33,7 @@ export default async (req, res) => {
         });
       });
 
-      const desc = $(".etw-color-redbrown").text();
+      const desc = $(".etw-web .etw-color-redbrown").text();
 
       res.json({
         data,
